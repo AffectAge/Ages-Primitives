@@ -1,0 +1,21 @@
+{
+  "input": {
+    "ingredient": {
+      "tag": "agesprimitives:flint_knapping"
+    },
+    "count": 1
+  },
+  "amount_to_consume": 1,
+  "click_sound": "minecraft:block.tuff.break",
+  "result_take_sound": "minecraft:entity.item.pickup",
+  "consume_after_complete": false,
+  "use_disabled_texture": true,
+  "spawns_particles": true,
+  "grid_width": 5,
+  "grid_height": 5,
+  "active_cells_texture": "agesprimitives:textures/gui/knapping/cells/flint_active.png",
+  "disabled_cells_texture": "agesprimitives:textures/gui/knapping/cells/flint_disabled.png",
+  "jei_icon_item": {
+    "item": "minecraft:flint"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "replace": false,
+  "values": [
+    "#agesprimitives:rock_knapping",
+    "#agesprimitives:clay_knapping",
+    "#agesprimitives:fire_clay_knapping",
+    "#agesprimitives:leather_knapping",
+    "#agesprimitives:flint_knapping",
+    "#agesprimitives:bone_knapping"
+  ]
+}

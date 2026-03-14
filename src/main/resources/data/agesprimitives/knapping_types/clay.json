@@ -1,0 +1,22 @@
+{
+  "input": {
+    "ingredient": {
+      "tag": "agesprimitives:clay_knapping"
+    },
+    "count": 1
+  },
+  "amount_to_consume": 1,
+  "click_sound": "minecraft:block.mud.break",
+  "result_take_sound": "minecraft:block.slime_block.place",
+  "consume_after_complete": false,
+  "use_disabled_texture": true,
+  "spawns_particles": false,
+  "grid_width": 5,
+  "grid_height": 5,
+  "active_cells_texture": "agesprimitives:textures/gui/knapping/cells/clay_active.png",
+  "disabled_cells_texture": "agesprimitives:textures/gui/knapping/cells/clay_disabled.png",
+  "jei_icon_item": {
+    "item": "minecraft:clay_ball"
+  }
+}
+

@@ -1,0 +1,19 @@
+{
+  "type": "agesprimitives:knapping",
+  "knapping_type": "agesprimitives:rock",
+  "pattern": [
+    "XXXXX",
+    "XXXXX",
+    " XXX ",
+    "  X  ",
+    "     "
+  ],
+  "key": {
+    "X": "filled",
+    " ": "empty"
+  },
+  "result": {
+    "item": "agesprimitives:stone_hammer_head",
+    "count": 1
+  }
+}

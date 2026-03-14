@@ -1,0 +1,22 @@
+{
+  "input": {
+    "ingredient": {
+      "tag": "agesprimitives:rock_knapping"
+    },
+    "count": 2
+  },
+  "amount_to_consume": 1,
+  "click_sound": "minecraft:block.stone.break",
+  "result_take_sound": "minecraft:entity.item.pickup",
+  "consume_after_complete": false,
+  "use_disabled_texture": true,
+  "spawns_particles": true,
+  "grid_width": 5,
+  "grid_height": 5,
+  "active_cells_texture": "agesprimitives:textures/gui/knapping/cells/rock_active.png",
+  "disabled_cells_texture": "agesprimitives:textures/gui/knapping/cells/rock_disabled.png",
+  "jei_icon_item": {
+    "item": "minecraft:flint"
+  }
+}
+

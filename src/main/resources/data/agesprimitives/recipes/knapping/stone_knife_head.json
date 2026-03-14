@@ -1,0 +1,19 @@
+{
+  "type": "agesprimitives:knapping",
+  "knapping_type": "agesprimitives:rock",
+  "pattern": [
+    "XXXXX",
+    " XXX ",
+    "  X  ",
+    "  X  ",
+    "     "
+  ],
+  "key": {
+    "X": "filled",
+    " ": "empty"
+  },
+  "result": {
+    "item": "agesprimitives:stone_knife_head",
+    "count": 1
+  }
+}

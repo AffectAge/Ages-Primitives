@@ -1,0 +1,22 @@
+{
+  "input": {
+    "ingredient": {
+      "tag": "agesprimitives:leather_knapping"
+    },
+    "count": 1
+  },
+  "amount_to_consume": 1,
+  "click_sound": "minecraft:item.armor.equip_leather",
+  "result_take_sound": "minecraft:item.bundle.insert",
+  "consume_after_complete": false,
+  "use_disabled_texture": true,
+  "spawns_particles": false,
+  "grid_width": 5,
+  "grid_height": 5,
+  "active_cells_texture": "agesprimitives:textures/gui/knapping/cells/leather_active.png",
+  "disabled_cells_texture": "agesprimitives:textures/gui/knapping/cells/leather_disabled.png",
+  "jei_icon_item": {
+    "item": "minecraft:leather"
+  }
+}
+

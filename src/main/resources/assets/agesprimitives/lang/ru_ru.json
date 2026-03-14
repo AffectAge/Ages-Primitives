@@ -1,0 +1,16 @@
+{
+  "itemGroup.agesprimitives.main": "Эпоха Примитивов",
+  "screen.agesprimitives.knapping": "Оббивка камня",
+  "screen.agesprimitives.knapping.hint": "ЛКМ чтобы снять часть заготовки",
+  "message.agesprimitives.requires_more_material": "Недостаточно материала для оббивки",
+  "message.agesprimitives.invalid_pattern": "Форма не совпадает с рецептом",
+  "jei.category.agesprimitives.rock_knapping": "Каменная оббивка",
+  "item.agesprimitives.stone_knife_head": "Каменная заготовка ножа",
+  "item.agesprimitives.stone_axe_head": "Каменная заготовка топора",
+  "item.agesprimitives.stone_shovel_head": "Каменная заготовка лопаты",
+  "item.agesprimitives.stone_hammer_head": "Каменная головка молота",
+  "item.agesprimitives.stone_spear_head": "Каменный наконечник копья",
+  "item.agesprimitives.stone_javelin_head": "Каменный наконечник дротика",
+  "item.agesprimitives.stone_hoe_head": "Каменная заготовка мотыги",
+  "item.agesprimitives.stone_scraper": "Каменный скребок"
+}

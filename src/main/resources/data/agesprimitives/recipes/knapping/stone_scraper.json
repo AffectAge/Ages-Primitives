@@ -1,0 +1,19 @@
+{
+  "type": "agesprimitives:knapping",
+  "knapping_type": "agesprimitives:rock",
+  "pattern": [
+    " XXX ",
+    "XXXXX",
+    "XXXXX",
+    " XXX ",
+    "     "
+  ],
+  "key": {
+    "X": "filled",
+    " ": "empty"
+  },
+  "result": {
+    "item": "agesprimitives:stone_scraper",
+    "count": 1
+  }
+}

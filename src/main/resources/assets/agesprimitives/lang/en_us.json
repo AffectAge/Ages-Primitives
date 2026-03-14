@@ -1,0 +1,16 @@
+{
+  "itemGroup.agesprimitives.main": "Ages Primitives",
+  "screen.agesprimitives.knapping": "Knapping",
+  "screen.agesprimitives.knapping.hint": "Left click to chip stone",
+  "message.agesprimitives.requires_more_material": "Not enough material for knapping",
+  "message.agesprimitives.invalid_pattern": "Pattern does not match any recipe",
+  "jei.category.agesprimitives.rock_knapping": "Rock Knapping",
+  "item.agesprimitives.stone_knife_head": "Stone Knife Head",
+  "item.agesprimitives.stone_axe_head": "Stone Axe Head",
+  "item.agesprimitives.stone_shovel_head": "Stone Shovel Head",
+  "item.agesprimitives.stone_hammer_head": "Stone Hammer Head",
+  "item.agesprimitives.stone_spear_head": "Stone Spear Head",
+  "item.agesprimitives.stone_javelin_head": "Stone Javelin Head",
+  "item.agesprimitives.stone_hoe_head": "Stone Hoe Head",
+  "item.agesprimitives.stone_scraper": "Stone Scraper"
+}

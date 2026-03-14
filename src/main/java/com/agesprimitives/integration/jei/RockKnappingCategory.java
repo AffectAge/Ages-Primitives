@@ -13,6 +13,7 @@ import mezz.jei.api.recipe.IFocusGroup;
 import mezz.jei.api.recipe.RecipeIngredientRole;
 import mezz.jei.api.recipe.RecipeType;
 import mezz.jei.api.recipe.category.IRecipeCategory;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -24,12 +25,19 @@ import java.util.Arrays;
 @SuppressWarnings("removal")
 public class RockKnappingCategory implements IRecipeCategory<KnappingRecipe> {
     public static final RecipeType<KnappingRecipe> RECIPE_TYPE = RecipeType.create(AgesPrimitives.MOD_ID, "rock_knapping", KnappingRecipe.class);
+    private static final int JEI_CELL_SIZE = 14;
+    private static final int GRID_X = 34;
+    private static final int GRID_Y = 20;
+    private static final int INPUT_X = 8;
+    private static final int OUTPUT_X = 132;
 
     private final IDrawable background;
     private final IDrawable icon;
+    private final IDrawable slotBackground;
 
     public RockKnappingCategory(IGuiHelper guiHelper) {
         this.background = guiHelper.createBlankDrawable(176, 110);
+        this.slotBackground = guiHelper.getSlotDrawable();
         ItemStack iconStack = KnappingTypeManager.INSTANCE.get(new ResourceLocation(AgesPrimitives.MOD_ID, "rock"))
                 .map(KnappingType::jeiIconItem)
                 .orElse(new ItemStack(Items.FLINT));
@@ -58,30 +66,64 @@ public class RockKnappingCategory implements IRecipeCategory<KnappingRecipe> {
 
     @Override
     public void setRecipe(IRecipeLayoutBuilder builder, KnappingRecipe recipe, IFocusGroup focuses) {
+        int gridHeightPx = recipe.getPatternHeight() * JEI_CELL_SIZE;
+        int slotY = GRID_Y + (gridHeightPx / 2) - 8;
+
         ItemStack[] inputs = KnappingTypeManager.INSTANCE.get(recipe.getKnappingType())
                 .map(type -> Arrays.stream(type.input().ingredient().getItems()).map(ItemStack::copy).toArray(ItemStack[]::new))
                 .orElse(new ItemStack[0]);
 
         if (inputs.length > 0) {
-            builder.addSlot(RecipeIngredientRole.INPUT, 8, 46).addItemStacks(Arrays.asList(inputs));
+            builder.addSlot(RecipeIngredientRole.INPUT, INPUT_X, slotY)
+                    .setBackground(slotBackground, -1, -1)
+                    .addItemStacks(Arrays.asList(inputs));
         }
 
-        builder.addSlot(RecipeIngredientRole.OUTPUT, 150, 46)
+        builder.addSlot(RecipeIngredientRole.OUTPUT, OUTPUT_X, slotY)
+                .setBackground(slotBackground, -1, -1)
                 .addItemStack(recipe.getResultItem(net.minecraft.core.RegistryAccess.EMPTY));
     }
 
     @Override
     public void draw(KnappingRecipe recipe, IRecipeSlotsView recipeSlotsView, GuiGraphics graphics, double mouseX, double mouseY) {
-        graphics.fill(20, 20, 20 + recipe.getPatternWidth() * 12 + 2, 20 + recipe.getPatternHeight() * 12 + 2, 0xFF2F261B);
+        int gridWidthPx = recipe.getPatternWidth() * JEI_CELL_SIZE;
+        int gridHeightPx = recipe.getPatternHeight() * JEI_CELL_SIZE;
+
+        graphics.fill(GRID_X - 2, GRID_Y - 2, GRID_X + gridWidthPx + 2, GRID_Y + gridHeightPx + 2, 0xFF1B1611);
+
+        KnappingType type = KnappingTypeManager.INSTANCE.get(recipe.getKnappingType()).orElse(null);
+        if (type != null && hasResource(type.activeCellsTexture())) {
+            int texWidth = recipe.getPatternWidth() * 14;
+            int texHeight = recipe.getPatternHeight() * 14;
+            graphics.blit(type.activeCellsTexture(), GRID_X, GRID_Y, 0, 0, gridWidthPx, gridHeightPx, texWidth, texHeight);
+        } else {
+            graphics.fill(GRID_X, GRID_Y, GRID_X + gridWidthPx, GRID_Y + gridHeightPx, 0xFFA18A5D);
+        }
+
         for (int y = 0; y < recipe.getPatternHeight(); y++) {
             for (int x = 0; x < recipe.getPatternWidth(); x++) {
                 int index = y * recipe.getPatternWidth() + x;
                 boolean removed = (recipe.getRequiredRemovedMask() & (1L << index)) != 0;
-                int color = removed ? 0xFF15110C : 0xFFB09865;
-                int x0 = 21 + x * 12;
-                int y0 = 21 + y * 12;
-                graphics.fill(x0, y0, x0 + 10, y0 + 10, color);
+                if (!removed) {
+                    continue;
+                }
+
+                int x0 = GRID_X + x * JEI_CELL_SIZE;
+                int y0 = GRID_Y + y * JEI_CELL_SIZE;
+                if (type != null && type.useDisabledTexture() && hasResource(type.disabledCellsTexture())) {
+                    int u = x * 14;
+                    int v = y * 14;
+                    int texWidth = recipe.getPatternWidth() * 14;
+                    int texHeight = recipe.getPatternHeight() * 14;
+                    graphics.blit(type.disabledCellsTexture(), x0, y0, u, v, JEI_CELL_SIZE, JEI_CELL_SIZE, texWidth, texHeight);
+                } else {
+                    graphics.fill(x0, y0, x0 + JEI_CELL_SIZE, y0 + JEI_CELL_SIZE, 0xFF15110C);
+                }
             }
         }
+    }
+
+    private static boolean hasResource(ResourceLocation location) {
+        return Minecraft.getInstance().getResourceManager().getResource(location).isPresent();
     }
 }

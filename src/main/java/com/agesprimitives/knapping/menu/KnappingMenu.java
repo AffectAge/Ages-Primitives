@@ -28,7 +28,7 @@ import java.util.Optional;
 
 public class KnappingMenu extends AbstractContainerMenu {
     public static final int RESULT_SLOT_X = 128;
-    public static final int RESULT_SLOT_Y = 456;
+    public static final int RESULT_SLOT_Y = 46;
 
     private final InteractionHand hand;
     private final ResourceLocation knappingTypeId;

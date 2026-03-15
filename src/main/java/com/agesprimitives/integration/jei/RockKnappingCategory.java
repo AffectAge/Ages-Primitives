@@ -24,21 +24,24 @@ import java.util.Arrays;
 
 @SuppressWarnings("removal")
 public class RockKnappingCategory implements IRecipeCategory<KnappingRecipe> {
-    public static final RecipeType<KnappingRecipe> RECIPE_TYPE = RecipeType.create(AgesPrimitives.MOD_ID, "rock_knapping", KnappingRecipe.class);
     private static final int JEI_CELL_SIZE = 14;
     private static final int GRID_X = 34;
     private static final int GRID_Y = 20;
     private static final int INPUT_X = 8;
     private static final int OUTPUT_X = 132;
 
+    private final ResourceLocation knappingTypeId;
+    private final RecipeType<KnappingRecipe> recipeType;
     private final IDrawable background;
     private final IDrawable icon;
     private final IDrawable slotBackground;
 
-    public RockKnappingCategory(IGuiHelper guiHelper) {
+    public RockKnappingCategory(ResourceLocation knappingTypeId, RecipeType<KnappingRecipe> recipeType, IGuiHelper guiHelper) {
+        this.knappingTypeId = knappingTypeId;
+        this.recipeType = recipeType;
         this.background = guiHelper.createBlankDrawable(176, 110);
         this.slotBackground = guiHelper.getSlotDrawable();
-        ItemStack iconStack = KnappingTypeManager.INSTANCE.get(new ResourceLocation(AgesPrimitives.MOD_ID, "rock"))
+        ItemStack iconStack = KnappingTypeManager.INSTANCE.get(knappingTypeId)
                 .map(KnappingType::jeiIconItem)
                 .orElse(new ItemStack(Items.FLINT));
         this.icon = guiHelper.createDrawableIngredient(VanillaTypes.ITEM_STACK, iconStack);
@@ -46,12 +49,13 @@ public class RockKnappingCategory implements IRecipeCategory<KnappingRecipe> {
 
     @Override
     public RecipeType<KnappingRecipe> getRecipeType() {
-        return RECIPE_TYPE;
+        return recipeType;
     }
 
     @Override
     public Component getTitle() {
-        return Component.translatable("jei.category.agesprimitives.rock_knapping");
+        String typeKey = knappingTypeId.getPath().replace('/', '_');
+        return Component.translatable("jei.category.agesprimitives.knapping." + typeKey);
     }
 
     @Override
@@ -121,6 +125,10 @@ public class RockKnappingCategory implements IRecipeCategory<KnappingRecipe> {
                 }
             }
         }
+    }
+
+    public ResourceLocation getKnappingTypeId() {
+        return knappingTypeId;
     }
 
     private static boolean hasResource(ResourceLocation location) {

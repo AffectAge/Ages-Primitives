@@ -1,0 +1,19 @@
+{
+  "type": "agesprimitives:knapping",
+  "knapping_type": "agesprimitives:flint",
+  "pattern": [
+    " XXX ",
+    "XXXXX",
+    " XXX ",
+    "  X  ",
+    "     "
+  ],
+  "key": {
+    "X": "filled",
+    " ": "empty"
+  },
+  "result": {
+    "item": "agesprimitives:flint_axe_head",
+    "count": 1
+  }
+}

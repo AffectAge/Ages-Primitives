@@ -33,6 +33,7 @@ public class AgesPrimitivesKubeJSPlugin extends KubeJSPlugin {
     @Override
     public void registerRecipeSchemas(RegisterRecipeSchemasEvent event) {
         event.register(KNAPPING_RECIPE_ID, KNAPPING_SCHEMA);
-        event.mapRecipe(AgesPrimitives.MOD_ID + ".knapping", KNAPPING_RECIPE_ID);
+        event.mapRecipe("agesprimitivesKnapping", KNAPPING_RECIPE_ID);
+        event.mapRecipe("knapping", KNAPPING_RECIPE_ID);
     }
 }

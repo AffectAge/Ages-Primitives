@@ -19,11 +19,19 @@ public final class ModCreativeTabs {
                 output.accept(ModItems.STONE_KNIFE_HEAD.get());
                 output.accept(ModItems.STONE_AXE_HEAD.get());
                 output.accept(ModItems.STONE_SHOVEL_HEAD.get());
+                output.accept(ModItems.STONE_PICKAXE_HEAD.get());
                 output.accept(ModItems.STONE_HAMMER_HEAD.get());
                 output.accept(ModItems.STONE_SPEAR_HEAD.get());
-                output.accept(ModItems.STONE_JAVELIN_HEAD.get());
+                output.accept(ModItems.STONE_SWORD_HEAD.get());
                 output.accept(ModItems.STONE_HOE_HEAD.get());
-                output.accept(ModItems.STONE_SCRAPER.get());
+                output.accept(ModItems.FLINT_KNIFE_HEAD.get());
+                output.accept(ModItems.FLINT_AXE_HEAD.get());
+                output.accept(ModItems.FLINT_SHOVEL_HEAD.get());
+                output.accept(ModItems.FLINT_PICKAXE_HEAD.get());
+                output.accept(ModItems.FLINT_HAMMER_HEAD.get());
+                output.accept(ModItems.FLINT_SPEAR_HEAD.get());
+                output.accept(ModItems.FLINT_SWORD_HEAD.get());
+                output.accept(ModItems.FLINT_HOE_HEAD.get());
             })
             .build());
 

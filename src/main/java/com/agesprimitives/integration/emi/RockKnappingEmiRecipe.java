@@ -4,6 +4,7 @@ import com.agesprimitives.knapping.KnappingRecipe;
 import com.agesprimitives.knapping.KnappingType;
 import com.agesprimitives.knapping.KnappingTypeManager;
 import dev.emi.emi.api.recipe.BasicEmiRecipe;
+import dev.emi.emi.api.recipe.EmiRecipeCategory;
 import dev.emi.emi.api.stack.EmiIngredient;
 import dev.emi.emi.api.stack.EmiStack;
 import dev.emi.emi.api.widget.WidgetHolder;
@@ -21,8 +22,8 @@ public class RockKnappingEmiRecipe extends BasicEmiRecipe {
 
     private final KnappingRecipe recipe;
 
-    public RockKnappingEmiRecipe(KnappingRecipe recipe) {
-        super(AgesPrimitivesEmiPlugin.ROCK_KNAPPING, recipe.getId(), 176, 110);
+    public RockKnappingEmiRecipe(KnappingRecipe recipe, EmiRecipeCategory category) {
+        super(category, recipe.getId(), 176, 110);
         this.recipe = recipe;
 
         Ingredient ingredient = KnappingTypeManager.INSTANCE.get(recipe.getKnappingType())

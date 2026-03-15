@@ -2,10 +2,10 @@
   "type": "agesprimitives:knapping",
   "knapping_type": "agesprimitives:rock",
   "pattern": [
+    "  X  ",
     " XXX ",
-    "XXXXX",
-    "XXXXX",
     " XXX ",
+    "  X  ",
     "     "
   ],
   "key": {
@@ -13,7 +13,7 @@
     " ": "empty"
   },
   "result": {
-    "item": "agesprimitives:stone_scraper",
+    "item": "agesprimitives:stone_sword_head",
     "count": 1
   }
 }

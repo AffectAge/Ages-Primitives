@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "agesprimitives:item/stone_scraper"
+    "layer0": "agesprimitives:item/flint_hoe_head"
   }
 }

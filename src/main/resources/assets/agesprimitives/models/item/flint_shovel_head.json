@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "agesprimitives:item/stone_javelin_head"
+    "layer0": "agesprimitives:item/flint_shovel_head"
   }
 }

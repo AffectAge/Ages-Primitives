@@ -1,0 +1,19 @@
+{
+  "type": "agesprimitives:knapping",
+  "knapping_type": "agesprimitives:flint",
+  "pattern": [
+    "  X  ",
+    " XXX ",
+    "XXXXX",
+    " XXX ",
+    "  X  "
+  ],
+  "key": {
+    "X": "filled",
+    " ": "empty"
+  },
+  "result": {
+    "item": "agesprimitives:flint_spear_head",
+    "count": 1
+  }
+}

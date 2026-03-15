@@ -9,6 +9,9 @@ import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
+import net.minecraftforge.fml.ModList;
+
+import java.lang.reflect.Method;
 
 public class KnappingScreen extends AbstractContainerScreen<KnappingMenu> {
     private static final ResourceLocation TEXTURE = new ResourceLocation("agesprimitives", "textures/gui/knapping.png");
@@ -21,6 +24,10 @@ public class KnappingScreen extends AbstractContainerScreen<KnappingMenu> {
     private static final int GRID_Y = 20;
     private static final int RESULT_X = KnappingMenu.RESULT_SLOT_X;
     private static final int RESULT_Y = KnappingMenu.RESULT_SLOT_Y;
+    private static final int ARROW_X = 97;
+    private static final int ARROW_Y = 46;
+    private static final int ARROW_W = 22;
+    private static final int ARROW_H = 15;
     private boolean draggingKnapping;
     private int lastDraggedIndex = -1;
 
@@ -82,6 +89,7 @@ public class KnappingScreen extends AbstractContainerScreen<KnappingMenu> {
         if (localMouseX >= RESULT_X && localMouseX < RESULT_X + 16 && localMouseY >= RESULT_Y && localMouseY < RESULT_Y + 16) {
             graphics.fill(left + RESULT_X, top + RESULT_Y, left + RESULT_X + 16, top + RESULT_Y + 16, 0x80FFFFFF);
         }
+
     }
 
     @Override
@@ -103,6 +111,10 @@ public class KnappingScreen extends AbstractContainerScreen<KnappingMenu> {
         int localY = (int) mouseY - topPos;
 
         if (button == 0) {
+            if (isArrowHovered(localX, localY) && openRecipeViewer()) {
+                return true;
+            }
+
             if (trySendGridClick(localX, localY)) {
                 draggingKnapping = true;
                 return true;
@@ -165,6 +177,30 @@ public class KnappingScreen extends AbstractContainerScreen<KnappingMenu> {
             return -1;
         }
         return (localY - GRID_Y) / CELL_SIZE;
+    }
+
+    private boolean isArrowHovered(int localX, int localY) {
+        return localX >= ARROW_X && localX < ARROW_X + ARROW_W && localY >= ARROW_Y && localY < ARROW_Y + ARROW_H;
+    }
+
+    private boolean openRecipeViewer() {
+        ResourceLocation knappingTypeId = menu.getKnappingTypeId();
+        if (ModList.get().isLoaded("jei") && invokeViewer("com.agesprimitives.integration.jei.AgesPrimitivesJeiPlugin", knappingTypeId)) {
+            return true;
+        }
+        return ModList.get().isLoaded("emi")
+                && invokeViewer("com.agesprimitives.integration.emi.AgesPrimitivesEmiPlugin", knappingTypeId);
+    }
+
+    private static boolean invokeViewer(String className, ResourceLocation knappingTypeId) {
+        try {
+            Class<?> clazz = Class.forName(className);
+            Method method = clazz.getMethod("openKnappingRecipes", ResourceLocation.class);
+            Object result = method.invoke(null, knappingTypeId);
+            return result instanceof Boolean b && b;
+        } catch (ReflectiveOperationException ignored) {
+            return false;
+        }
     }
 
     private static boolean hasResource(ResourceLocation location) {

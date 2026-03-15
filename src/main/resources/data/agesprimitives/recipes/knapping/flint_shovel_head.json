@@ -1,0 +1,19 @@
+{
+  "type": "agesprimitives:knapping",
+  "knapping_type": "agesprimitives:flint",
+  "pattern": [
+    " XXX ",
+    " XXX ",
+    "  X  ",
+    "  X  ",
+    "     "
+  ],
+  "key": {
+    "X": "filled",
+    " ": "empty"
+  },
+  "result": {
+    "item": "agesprimitives:flint_shovel_head",
+    "count": 1
+  }
+}

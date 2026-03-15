@@ -1,0 +1,2 @@
+Ages Primitives is a Forge 1.20.1 mod that adds a TerraFirmaCraft-inspired, data-driven knapping system to early game progression.
+Hold a valid material, open the knapping UI, and chip away cells on a grid to form tool heads and primitive parts. Recipes and knapping types are fully JSON/datapack based, so modpack makers can add new materials, patterns, sounds, textures, and behavior without Java changes. Ages Primitives is designed as a foundation for full primitive-age gameplay, with room to expand into pottery, hideworking, firemaking, and more.

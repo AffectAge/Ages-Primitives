@@ -1,5 +1,6 @@
 package com.agesprimitives.knapping.menu;
 
+import com.agesprimitives.config.ModCommonConfig;
 import com.agesprimitives.knapping.KnappingRecipe;
 import com.agesprimitives.knapping.KnappingRecipeIndex;
 import com.agesprimitives.knapping.KnappingState;
@@ -195,12 +196,13 @@ public class KnappingMenu extends AbstractContainerMenu {
             return false;
         }
         ItemStack handStack = player.getItemInHand(hand);
-        return type.input().matches(handStack) && handStack.getCount() >= type.input().count();
+        int requiredCount = ModCommonConfig.getRequiredCount(knappingTypeId, type.input().count());
+        return matchesConfiguredOrTypeInput(handStack) && handStack.getCount() >= requiredCount;
     }
 
     private boolean tryConsumeInput(Player player, int amount) {
         ItemStack handStack = player.getItemInHand(hand);
-        if (type == null || !type.input().matches(handStack) || handStack.getCount() < amount) {
+        if (type == null || !matchesConfiguredOrTypeInput(handStack) || handStack.getCount() < amount) {
             return false;
         }
         handStack.shrink(amount);
@@ -281,7 +283,11 @@ public class KnappingMenu extends AbstractContainerMenu {
             return true;
         }
         ItemStack handStack = player.getItemInHand(hand);
-        return type.input().matches(handStack) && handStack.getCount() >= type.amountToConsume();
+        return matchesConfiguredOrTypeInput(handStack) && handStack.getCount() >= type.amountToConsume();
+    }
+
+    private boolean matchesConfiguredOrTypeInput(ItemStack stack) {
+        return ModCommonConfig.matchesTypeInput(knappingTypeId, stack);
     }
 
     private void addResultSlot() {

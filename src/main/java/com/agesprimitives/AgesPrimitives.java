@@ -1,6 +1,7 @@
 package com.agesprimitives;
 
 import com.agesprimitives.client.ClientSetup;
+import com.agesprimitives.config.ModCommonConfig;
 import com.agesprimitives.knapping.KnappingTypeManager;
 import com.agesprimitives.network.PacketHandler;
 import com.agesprimitives.registry.ModCreativeTabs;
@@ -12,6 +13,8 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.AddReloadListenerEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.ModLoadingContext;
+import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
@@ -28,6 +31,7 @@ public class AgesPrimitives {
         ModCreativeTabs.CREATIVE_MODE_TABS.register(modBus);
 
         modBus.addListener(this::onClientSetup);
+        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, ModCommonConfig.SPEC);
 
         PacketHandler.init();
         MinecraftForge.EVENT_BUS.addListener(this::onAddReloadListeners);

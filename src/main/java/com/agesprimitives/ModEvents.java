@@ -1,5 +1,6 @@
 package com.agesprimitives;
 
+import com.agesprimitives.config.ModCommonConfig;
 import com.agesprimitives.knapping.KnappingRecipeIndex;
 import com.agesprimitives.knapping.KnappingType;
 import com.agesprimitives.knapping.KnappingTypeManager;
@@ -21,12 +22,15 @@ public class ModEvents {
             return;
         }
 
-        KnappingType type = KnappingTypeManager.INSTANCE.findForStack(event.getItemStack()).orElse(null);
+        KnappingType type = ModCommonConfig.findTypeForStack(event.getItemStack())
+                .flatMap(typeId -> KnappingTypeManager.INSTANCE.get(typeId))
+                .orElse(null);
         if (type == null) {
             return;
         }
 
-        if (event.getItemStack().getCount() < type.input().count()) {
+        int requiredCount = ModCommonConfig.getRequiredCount(type.id(), type.input().count());
+        if (event.getItemStack().getCount() < requiredCount) {
             player.displayClientMessage(Component.translatable("message.agesprimitives.requires_more_material"), true);
             return;
         }
